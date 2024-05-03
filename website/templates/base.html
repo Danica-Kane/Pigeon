@@ -49,7 +49,7 @@
     </nav>
 
     <!-- System Alerts -->
-    {% with messages = get_flashed_messages(with_catergories=true) %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
         {%for catergory, message in messages %}
         {% if catergory =='error' %}
