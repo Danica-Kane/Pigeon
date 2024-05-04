@@ -10,11 +10,25 @@
       crossorigin="anonymous"
     />
 
-    <title>{% block title%}Home{% endblock %}</title>
+    <!-- google fonts -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat&display=swap");
+    </style>
+    <!---->
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='css/main.css') }}"
+    />
+
+    <title>{% block title%}{% endblock %}</title>
+
+    {% block head%}{% endblock%}
   </head>
   <body>
     <!-- TEMPORARY NAV BAR FOR LOGIN PAGE-->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg initial-nav">
       <div class="container-fluid">
         <button
           class="navbar-toggler"
@@ -24,13 +38,14 @@
           aria-controls="navbarSupportedContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
+          
         >
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             {% if user.is_authenticated %}
-            <li class="nav-item">
+            <li class="nav-item ">
               <a class="nav-item nav-link" id="logout" href="logout">Logout</a>
             </li>
             <li class="nav-item">
@@ -52,29 +67,33 @@
     </nav>
 
     <!-- System Alerts -->
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-        {%for catergory, message in messages %}
-        {% if catergory =='error' %}
-        <div class="alert alert-danger alter-dissmissable fade show" role="alert">
-            {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" style="float: right;" aria-label="Close"></button>
-        </div>
-        {% else %}
-        <div class="alert alert-success alter-dissmissable fade show" role="alert">
-            {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" style="float: right;" aria-label="Close"></button>
-        </div>
-        {% endif %}
-        {% endfor%}
-    {% endif %}
-    {% endwith%}
-
-    <div class="container">
-        {% block content %}
-
-        {% endblock %}
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %} {%for catergory, message in messages %} {% if catergory
+    =='error' %}
+    <div class="alert alert-danger alter-dissmissable fade show" role="alert">
+      {{ message }}
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        style="float: right"
+        aria-label="Close"
+      ></button>
     </div>
+    {% else %}
+    <div class="alert alert-success alter-dissmissable fade show" role="alert">
+      {{ message }}
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        style="float: right"
+        aria-label="Close"
+      ></button>
+    </div>
+    {% endif %} {% endfor%} {% endif %} {% endwith%}
+
+    <div class="container">{% block content %} {% endblock %}</div>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
