@@ -1,13 +1,22 @@
-{% extends "base.html" %} {% block title%}SignUp{% endblock %} {% block content
-%}
+{% extends "base.html" %} {% block title%}SignUp{% endblock %} 
+
+{% block head %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static', filename='css/login.css') }}"
+/>
+{% endblock%}
+
+{% block content%}
 <!-- SIGN UP FORM -->
 <form method="POST">
-  <h3 align="center">Sign Up</h3>
+  <h1 align="center"><strong>Sign Up</strong></h1>
   <div class="form-group">
-    <label for="email">Email Address</label>
+    <label for="email" class="sign-label">email address</label>
     <input
       type="email"
-      class="form-control"
+      class="form-control sign-input"
       id="email"
       name="email"
       placeholder="Enter email"
@@ -15,10 +24,10 @@
   </div>
 
   <div class="form-group">
-    <label for="first_name">First Name</label>
+    <label for="first_name" class="sign-label">first name</label>
     <input
       type="text"
-      class="form-control"
+      class="form-control sign-input"
       id="first_name"
       name="first_name"
       placeholder="Enter first name"
@@ -26,10 +35,10 @@
   </div>
 
   <div class="form-group">
-    <label for="password1">Password</label>
+    <label for="password1" class="sign-label">password</label>
     <input
       type="password"
-      class="form-control"
+      class="form-control sign-input"
       id="password1"
       name="password1"
       placeholder="Enter password"
@@ -37,10 +46,10 @@
   </div>
 
   <div class="form-group">
-    <label for="password2">Password (confirm)</label>
+    <label for="password2" class="sign-label">password (confirm)</label>
     <input
       type="password"
-      class="form-control"
+      class="form-control sign-input"
       id="password2"
       name="password2"
       placeholder="confirm password"
@@ -49,7 +58,7 @@
 
   <br />
   
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn sign-btn">Submit</button>
 
 </form>
 {%endblock%}

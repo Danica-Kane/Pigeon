@@ -46,11 +46,39 @@ h1{
     background-color: #00BF63;
     border: none;
     color: white;
-    margin: 15px;
     float: right;
 }
 
 .login-btn.login-btn:hover{
     background-color:#036435 ;
     border: none;
+    color: black;
+}
+
+/* sign up form */
+.sign-form-label{
+    font-size: 20px;
+    color: #261260;
+} 
+
+.sign-input{
+    height: 50px;
+    border-radius: 20px;
+    margin-bottom: 15px;
+}
+
+.sign-btn{
+    width: 40%;
+    height: auto;
+    font-size: 20px;
+    border-radius: 30;
+    background-color: #38B6FF;
+    border: none;
+    color: white;
+}
+
+.sign-btn.sign-btn:hover{
+    background-color: #1874aa ;
+    border: none;
+    color: black;
 }
