@@ -249,9 +249,15 @@ i {
 
 .sub-nav-icon{
     margin: 5vh;
+    padding: 15px;
+    border-radius: 30%;
 }
 
 .sub-nav-icon:hover{
     color: #261260;
+}
+
+.active-secondary-nav{
+    background: #403369;
 }
 
