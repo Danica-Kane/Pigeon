@@ -1,4 +1,7 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for
+import os
+import uuid
+from flask import Blueprint, render_template, request, flash, redirect, url_for, session
+from wtforms import FileField
 
 from website import DB_NAME
 from .models import User
@@ -43,7 +46,11 @@ def sign_up():
         first_name = request.form.get('first_name')
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
+        profile_pic = request.files["profile_pic"]
         
+        picName = str(uuid.uuid1()) + os.path.splitext(profile_pic.filename)[1]
+        profile_pic.save(os.path.join("/Users/danicakane/Downloads/Pigeon/website/static/images", picName))
+                
         user = User.query.filter_by(email = email).first()
         if user:
             flash('Email already exists', category='error')   
@@ -56,7 +63,7 @@ def sign_up():
         elif len(password1) < 7:
             flash('Password must be at least 7 characters', category='error')
         else:
-            new_user = User(email=email, first_name=first_name, password=generate_password_hash(password1, method='sha256'))
+            new_user = User(email=email, first_name=first_name, password=generate_password_hash(password1, method='sha256'), profile_pic=picName)
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
