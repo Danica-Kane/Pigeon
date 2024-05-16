@@ -19,8 +19,10 @@ body {
 
 /* alerts */
 .alert {
-  margin: 20px;
+  margin-left: 30px;
+  margin-right: 30px;
   border: none;
+  z-index: 2;
 }
 
 /* NAV BAR */
@@ -147,7 +149,6 @@ main {
   height: 5rem;
   color: var(--sidetext-primary);
   text-decoration: none;
-  filter: grayscale(100%) opacity(0.7);
   transition: transform var(--transition-speed);
 }
 
@@ -175,7 +176,7 @@ main {
 }
 
 .side-nav-link i {
-  min-width: 2rem;
+  min-width: 2.2rem;
   margin: 0 1.5rem;
 }
 
@@ -236,6 +237,13 @@ i {
   margin: 5px;
 }
 
+.band-icon{
+  background-color: #1874aa;
+  font-size: 20px;
+  padding: 7px;
+  border-radius: 100%;
+}
+
 /* sub nav */
 .sub-nav {
   margin-left: 5rem;
@@ -267,11 +275,44 @@ i {
 }
 
 /* profile/home page */
+
 .profile_pic{
   width: 25vh;
   height: 25vh;
   border-radius: 100%;
   align-self: right;
+  margin: 20px;
+}
+
+.divider{
+  border-bottom: rgb(102, 100, 100);
+  border-width: 3px;
+  border-bottom-style: solid;
+  margin-bottom: 40px;
+}
+
+h3{
+  display:inline-block;
+  font-size: 100px;
+  vertical-align:middle;
+}
+
+.team-button{
+  margin-top: 20px;
+  background-color: #D9D9D9;
+  padding: 20px;
+  width: 200px;
+  border-style: none;
+  border-radius: 20px;
+}
+
+.team-button:hover{
+ background-color: #aaa5a5;
+}
+
+.team-button-text{
+  margin-right: 20px;
+  font-size: 25px;
 }
 
 

@@ -3,12 +3,21 @@
 <main>
   <!-- style page -->
   <div class"container">
-    <div class="row">
+    <div class="row divider">
       <div class='col-md'>
         <img src="{{ url_for('static', filename='images/' + user.profile_pic )}}" class="profile_pic">
+        <h3>{{user.first_name}}<h3>
       </div>
-      <div class='col-md'>
-        {{user.first_name}}
+    </div>
+      <div class='row'>
+        <h2><strong>YOUR TEAMS<strong></h2>
+
+        <a href="instant_msg">
+          <button class="team-button">
+            <span class="team-button-text"> <strong> Band <strong> </span>
+            <i class="fa-solid fa-guitar band-icon"></i>
+          </button>
+        </a>
       </div>
     </div>
   </div>
