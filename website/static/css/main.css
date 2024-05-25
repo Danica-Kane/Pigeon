@@ -8,7 +8,7 @@
 body {
   font-family: "Josefin Sans", sans-serif;
   height: 100vh;
-  background: var(--body-color);
+  background: #FAFAFA;
 }
 
 .main-logo {
@@ -315,4 +315,42 @@ h3{
   font-size: 25px;
 }
 
+/* Instant Messaging Page */
+
+.instant-msg-input{
+  width: 75%;
+  display:inline-block;
+  border-radius: 10px;
+  border-style: none;
+}
+
+.instant-msg-btn{
+  float: inline-end;
+  background-color: #D9D9D9;
+  height: auto;
+}
+
+.instant-msg-btn:hover{
+  background-color: #b8b4b4;
+}
+
+.fa-paper-plane{
+  color: #787676;
+  align-self: center;
+  padding-right: 8px;
+}
+
+.profile-pic-msg{
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.date-msg{
+  font-style: italic;
+  color: #3f3f3f;
+  font-size: 10px;
+}
 

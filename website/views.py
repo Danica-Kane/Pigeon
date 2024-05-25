@@ -30,10 +30,8 @@ def instant_msg():
     
     if form.validate_on_submit():
         poster = current_user.id
-        post = Posts(title=form.title.data, content=form.content.data, poster_id=poster , slug=form.slug.data)
-        form.title.data = ""
+        post = Posts(content=form.content.data, poster_id=poster)
         form.content.data = ""
-        form.slug.data = ""
         
         #add data to database
         db.session.add(post)

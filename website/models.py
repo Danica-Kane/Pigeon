@@ -7,12 +7,6 @@ from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired, Length
 from wtforms.widgets import TextArea
 
-class Note(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    data = db.Column(db.String(10000))
-    date = db.Column(db.DateTime(timezone=True), default=func.now())
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(150), unique=True)
@@ -25,17 +19,13 @@ class User(db.Model, UserMixin):
 
 class Posts(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(225))
     content = db.Column(db.Text)
     date_posted = db.Column(db.DateTime(timezone=True), default=func.now())
-    slug = db.Column(db.String(255))
     #foreign key to link users
     poster_id = db.Column(db.Integer, db.ForeignKey(User.id))
     
 class PostForm(FlaskForm):
-    title = StringField("Title", validators=[DataRequired()])
     content = StringField("Content", validators=[DataRequired()], widget=TextArea())
-    slug = StringField("Slug", validators=[DataRequired()])
-    submit = SubmitField("Submit")
+    submit = SubmitField("")
 
     
