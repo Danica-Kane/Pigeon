@@ -1,7 +1,38 @@
 {% extends "base.html" %} {% block title%}Instant Messaging{% endblock %} {% block content %}
 
 <main>
-<h1>this is the instant messager</h1>
+<!-- form to create message -->
+<div class="shadow p-3 mb-5 bg-body rounded">
+    <form method="POST">
+        {{form.hidden_tag()}}
+        {{form.title.label (class="form-label")}}
+        {{form.title (class="form-control")}}
+        <br/>
+        {{form.slug.label (class="form-label")}}
+        {{form.slug (class="form-control")}}
+        <br/>
+        {{form.content.label (class="form-label")}}
+        {{form.content (class="form-control", rows="5")}}
+        <br/>
+        {{ form.submit(class="btn btn-secondary")}}
+    </form>
+</div>
+
+<!-- display messages -->
+<h1> messages </h1>
+
+<br/>
+
+{% for post in posts %}
+    {{ post.title }} <br/>
+    <img src="{{ url_for('static', filename='images/' + post.poster.profile_pic )}}" class="profile_pic"> <br/>
+    By : {{ post.poster.first_name }} <br/>
+    {{ post.slug }} <br/>
+    {{ post.date_posted }} <br/>
+    {{ post.content }} <br/> <hr> <br/>
+{% endfor %}
+
+<br/> <br/> <br/> <br/>
 
 </main>
 

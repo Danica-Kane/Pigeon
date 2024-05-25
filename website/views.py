@@ -1,9 +1,17 @@
-from flask import Blueprint, render_template, request, session, send_file
+from flask import Blueprint, flash, render_template, request, session, send_file
 from flask_login import login_required, current_user, login_user
 from .import db
 import os
 import uuid
-from .models import User
+from .models import PostForm, User
+from .models import Posts
+
+from flask_wtf import FlaskForm, CSRFProtect
+from wtforms import StringField, SubmitField
+from wtforms.validators import DataRequired, Length
+
+#csrf = CSRFProtect(views)
+
 
 views = Blueprint('views', __name__)
 
@@ -11,14 +19,30 @@ views = Blueprint('views', __name__)
 @views.route('/', methods=['GET', 'POST'])
 @login_required
 def home():
+    
     return render_template("home.html", user=current_user)
 
 
-@views.route('/instant_msg')
+@views.route('/instant_msg', methods=['GET', 'POST'])
 @login_required
 def instant_msg():
-    return render_template("instant_msg.html", user=current_user)
-
+    form = PostForm()
+    
+    if form.validate_on_submit():
+        poster = current_user.id
+        post = Posts(title=form.title.data, content=form.content.data, poster_id=poster , slug=form.slug.data)
+        form.title.data = ""
+        form.content.data = ""
+        form.slug.data = ""
+        
+        #add data to database
+        db.session.add(post)
+        db.session.commit()
+    
+    # get messages from database
+    posts = Posts.query.order_by(Posts.date_posted)
+        
+    return render_template("instant_msg.html", user=current_user, form=form, posts=posts)
 
 @views.route('/alert_board')
 @login_required
