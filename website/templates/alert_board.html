@@ -3,6 +3,64 @@
 <main>
 <h1>this is the alert board</h1>
 
+
+<!-- display messages -->
+
+<br/>
+
+{% for postalert in posts %}
+    {{ postalert.posteralert.first_name }}<br/>
+    <strong>{{ postalert.title }}</strong><br/>
+    {{ postalert.content }} <br/>
+    <p class="date-msg">{{ postalert.date_posted }} <p> <hr>
+{% endfor %}
+
+<!-- form to create message -->
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="shadow p-3 mb-5 bg-body rounded">
+                <form method="POST">
+                    {{form.hidden_tag()}}
+                    {{form.title.label (class="form-label")}}
+                    {{form.title (class="form-control instant-msg-input")}} <br/>
+                    {{form.content.label (class="form-label")}}
+                    {{form.content (class="form-control instant-msg-input", rows="1")}}
+                    <br/>
+                    {{ form.submit(class="btn instant-msg-btn fa-solid")}}
+                </form>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <!--
+<div class="shadow p-3 mb-5 bg-body rounded">
+    <form method="POST">
+        {{form.hidden_tag()}}
+        {{form.title.label (class="form-label")}}
+        {{form.title (class="form-control instant-msg-input")}} <br/>
+        {{form.content.label (class="form-label")}}
+        {{form.content (class="form-control instant-msg-input", rows="1")}}
+        <br/>
+        {{ form.submit(class="btn instant-msg-btn fa-solid")}}
+    </form>
+</div>-->
+
 </main>
 <!--SECONDARY NAVBAR-->
 <nav id="secondary-nav" class="navbar navbar-expand fixed-bottom sub-nav">

@@ -16,7 +16,9 @@ class User(db.Model, UserMixin):
     date = db.Column(db.DateTime(timezone=True), default=func.now())
     #user can have many posts
     posts = db.relationship('Posts', backref='poster')
+    postsalert = db.relationship('PostsAlert', backref='posteralert')
 
+# database for instant messaging 
 class Posts(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.Text)
@@ -27,5 +29,20 @@ class Posts(db.Model):
 class PostForm(FlaskForm):
     content = StringField("Content", validators=[DataRequired()], widget=TextArea())
     submit = SubmitField("")
+    
+# database for the alerts page
+class PostsAlert(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(150))
+    content = db.Column(db.Text)
+    date_posted = db.Column(db.DateTime(timezone=True), default=func.now())
+    #foreign key to link users
+    poster_id = db.Column(db.Integer, db.ForeignKey(User.id))
+    
+class PostFormAlert(FlaskForm):
+    title = StringField("Title", validators=[DataRequired()])
+    content = StringField("Content", validators=[DataRequired()], widget=TextArea())
+    submit = SubmitField("Submit")
+
 
     

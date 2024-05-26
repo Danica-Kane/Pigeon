@@ -7,10 +7,9 @@
 <br/>
 
 {% for post in posts %}
-    {{ post.title }} <br/>
     <img src="{{ url_for('static', filename='images/' + post.poster.profile_pic )}}" class="profile-pic-msg"> <strong> {{ post.poster.first_name }} </strong> <br/>
     {{ post.content }} <br/>
-    <p class="date-msg">{{ post.date_posted }} <p> <hr> <br/>
+    <p class="date-msg">{{ post.date_posted }} <p> <hr>
 {% endfor %}
 
 <!-- form to create message -->

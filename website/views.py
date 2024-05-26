@@ -6,6 +6,9 @@ import uuid
 from .models import PostForm, User
 from .models import Posts
 
+from .models import PostFormAlert, User
+from .models import PostsAlert, User
+
 from flask_wtf import FlaskForm, CSRFProtect
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired, Length
@@ -42,10 +45,28 @@ def instant_msg():
         
     return render_template("instant_msg.html", user=current_user, form=form, posts=posts)
 
-@views.route('/alert_board')
+# ALERT BOARD
+
+@views.route('/alert_board', methods=["GET", "POST"])
 @login_required
 def alert_board():
-    return render_template("alert_board.html", user=current_user)
+    
+    form = PostFormAlert()
+    
+    if form.validate_on_submit():
+        posteralert = current_user.id
+        postalert = PostsAlert(content=form.content.data, title=form.title.data, poster_id=posteralert)
+        form.title.data = ""
+        form.content.data = ""
+        
+        #add data to database
+        db.session.add(postalert)
+        db.session.commit()
+    
+    # get messages from database
+    posts = PostsAlert.query.order_by(PostsAlert.date_posted)
+    
+    return render_template("alert_board.html", user=current_user,  form=form, posts=posts)
 
 
 @views.route('/event_board')
