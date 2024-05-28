@@ -354,3 +354,82 @@ h3{
   font-size: 10px;
 }
 
+/* Alert Board page */
+
+.alert-create-btn{
+  border-radius: 40px;
+  border-style: none;
+  color:black;
+  background-color: #C8BBEF;
+  padding: 10px;
+  position: absolute;
+  bottom: 13%;
+  right: 15px;
+}
+
+.alert-create-btn:hover{
+  background-color: #9687c2;
+
+}
+
+.fa-circle-plus{
+  color: #61538B;
+  width: 5px;
+  height: 5px;
+  position: absolute;
+  bottom: 4.5vh;
+}
+
+.alert-text{
+  display: inline;
+  padding-right: 10px;
+  margin-left: 20px;
+  font-weight: bold;
+}
+
+.modal{
+  background-color: #8e7cc3;
+}
+
+.form-label-alert{
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.alert-submit-btn{
+  background-color: #00bf63;
+  border-radius: 10px;
+  float: left;
+  font-size: 30px;
+}
+
+.alert-submit-btn:hover{
+  background-color: #06753f;
+}
+
+/* alert cards */
+
+.alert-post-card{
+  background-color: #b9abe1;
+  border-radius: 10px;
+  border-style: none;
+  padding: 20px;
+}
+
+.alert-post-title{
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.alert-post-content{
+  font-size: 20px;
+}
+
+.alert-close-btn{
+  float: right;
+  padding-top: 3px;
+  padding-left: 3px;
+  padding-right: 3px;
+  padding-bottom: 0px;
+  background-color: #7c6cae;
+}

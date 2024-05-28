@@ -1,4 +1,4 @@
-from flask import Blueprint, flash, render_template, request, session, send_file
+from flask import Blueprint, flash, render_template, request, session, send_file, redirect
 from flask_login import login_required, current_user, login_user
 from .import db
 import os
@@ -68,7 +68,6 @@ def alert_board():
     
     return render_template("alert_board.html", user=current_user,  form=form, posts=posts)
 
-
 @views.route('/event_board')
 @login_required
 def event_board():
@@ -79,3 +78,20 @@ def event_board():
 @login_required
 def settings():
     return render_template("settings.html", user=current_user)
+
+@views.route('delete/<int:id>')
+@login_required
+def delete(id):
+    alert_to_delete = PostsAlert.query.get_or_404(id)
+    id = current_user.id
+
+    if id == alert_to_delete.poster_id:
+        try:
+            db.session.delete(alert_to_delete)
+            db.session.commit()
+            return redirect('/alert_board')
+        except:
+            return "there was a problem"
+    else:
+        flash("you are not authorised to delete this alert. ")
+        return redirect('/alert_board')

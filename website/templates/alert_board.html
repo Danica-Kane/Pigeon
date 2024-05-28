@@ -1,65 +1,55 @@
 {% extends "base.html" %} {% block title%}Alert Board{% endblock %} {% block content %}
 
 <main>
-<h1>this is the alert board</h1>
-
 
 <!-- display messages -->
 
 <br/>
 
 {% for postalert in posts %}
-    {{ postalert.posteralert.first_name }}<br/>
-    <strong>{{ postalert.title }}</strong><br/>
-    {{ postalert.content }} <br/>
-    <p class="date-msg">{{ postalert.date_posted }} <p> <hr>
+    <div class="alert-post-card">
+        <a href="/delete/{{postalert.id}}" class="btn alert-close-btn"><i class="fa-solid fa-xmark"></i></a>
+        <p class="alert-post-title">{{ postalert.title }}</p>
+        <p class="alert-post-content">{{ postalert.content }} </p>
+        <hr>
+        <img src="{{ url_for('static', filename='images/' + postalert.posteralert.profile_pic )}}" class="profile-pic-msg">
+        <strong>{{ postalert.posteralert.first_name }}</strong>
+    </div>
+    <br/><br/>
 {% endfor %}
 
-<!-- form to create message -->
+<!-- Form to create message -->
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Launch demo modal
+<button type="button" class="btn alert-create-btn shadow" data-bs-toggle="modal" data-bs-target="#alertModal">
+    <i class="fa-solid fa-circle-plus"></i>
+    <p class="alert-text" >_ Create Alert</p>
   </button>
   
   <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <p class="modal-title fs-5" id="alertModalLabel"><strong>Create Alert</strong></p>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <div class="shadow p-3 mb-5 bg-body rounded">
+            <div class=" p-3 mb-5 bg-body">
                 <form method="POST">
                     {{form.hidden_tag()}}
-                    {{form.title.label (class="form-label")}}
-                    {{form.title (class="form-control instant-msg-input")}} <br/>
-                    {{form.content.label (class="form-label")}}
-                    {{form.content (class="form-control instant-msg-input", rows="1")}}
-                    <br/>
-                    {{ form.submit(class="btn instant-msg-btn fa-solid")}}
+                    {{form.title.label (class="form-label-alert")}} <br/>
+                    {{form.title (class="form-control alert-title-input", placeholder="What is your alert about?")}} <br/> <br/>
+                    {{form.content.label (class="form-label-alert")}}<br/>
+                    {{form.content (class="form-control alert-content-input", placeholder="Put the details of your alert here", rows="5")}}
+                    <br/><br/>
+                    {{ form.submit(class="btn alert-submit-btn")}}
                 </form>
             </div>
         </div>
       </div>
     </div>
   </div>
-  
-
-  <!--
-<div class="shadow p-3 mb-5 bg-body rounded">
-    <form method="POST">
-        {{form.hidden_tag()}}
-        {{form.title.label (class="form-label")}}
-        {{form.title (class="form-control instant-msg-input")}} <br/>
-        {{form.content.label (class="form-label")}}
-        {{form.content (class="form-control instant-msg-input", rows="1")}}
-        <br/>
-        {{ form.submit(class="btn instant-msg-btn fa-solid")}}
-    </form>
-</div>-->
 
 </main>
 <!--SECONDARY NAVBAR-->
