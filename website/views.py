@@ -9,6 +9,9 @@ from .models import Posts
 from .models import PostFormAlert, User
 from .models import PostsAlert, User
 
+from .models import PostFormEvent, User
+from .models import PostsEvent, User
+
 from flask_wtf import FlaskForm, CSRFProtect
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired, Length
@@ -68,16 +71,38 @@ def alert_board():
     
     return render_template("alert_board.html", user=current_user,  form=form, posts=posts)
 
-@views.route('/event_board')
+# EVENT BOARD
+
+@views.route('/event_board', methods=["GET", "POST"])
 @login_required
 def event_board():
-    return render_template("event_board.html", user=current_user)
+    
+    form = PostFormEvent()
+    
+    if form.validate_on_submit():
+        posterevent = current_user.id
+        postevent = PostsEvent(content=form.content.data, title=form.title.data, entrydate=form.entrydate.data,time=form.time.data, poster_id=posterevent)
+        form.title.data = ""
+        form.content.data = ""
+        form.entrydate.data = ""
+        form.time.data = ""   
+            
+        #add data to database
+        db.session.add(postevent)
+        db.session.commit()
+    
+    # get messages from database
+    posts = PostsEvent.query.order_by(PostsEvent.date_posted)
+    
+    return render_template("event_board.html", user=current_user, form=form, posts=posts)
 
 
 @views.route('/settings')
 @login_required
 def settings():
     return render_template("settings.html", user=current_user)
+
+# DELEATE POSTS 
 
 @views.route('delete/<int:id>')
 @login_required
@@ -95,3 +120,20 @@ def delete(id):
     else:
         flash("you are not authorised to delete this alert. ")
         return redirect('/alert_board')
+    
+@views.route('delete_event/<int:id>')
+@login_required
+def delete_event(id):
+    event_to_delete = PostsEvent.query.get_or_404(id)
+    id = current_user.id
+
+    if id == event_to_delete.poster_id:
+        try:
+            db.session.delete(event_to_delete)
+            db.session.commit()
+            return redirect('/event_board')
+        except:
+            return "there was a problem"
+    else:
+        flash("you are not authorised to delete this event. ")
+        return redirect('/event_board')

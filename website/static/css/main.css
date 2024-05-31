@@ -377,7 +377,7 @@ h3{
   width: 5px;
   height: 5px;
   position: absolute;
-  bottom: 4.5vh;
+  bottom: 4.25vh;
 }
 
 .alert-text{
@@ -431,5 +431,13 @@ h3{
   padding-left: 3px;
   padding-right: 3px;
   padding-bottom: 0px;
-  background-color: #7c6cae;
+  background-color: #b9abe1;
 }
+
+/* event cards */
+
+.event-post-date{
+  font-size: 20px;
+  font-style: italic;
+}
+

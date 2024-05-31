@@ -9,7 +9,7 @@
 {% for postalert in posts %}
     <div class="alert-post-card">
         <a href="/delete/{{postalert.id}}" class="btn alert-close-btn"><i class="fa-solid fa-xmark"></i></a>
-        <p class="alert-post-title">{{ postalert.title }}</p>
+        <p class="alert-post-title">Alert: {{ postalert.title }}</p>
         <p class="alert-post-content">{{ postalert.content }} </p>
         <hr>
         <img src="{{ url_for('static', filename='images/' + postalert.posteralert.profile_pic )}}" class="profile-pic-msg">
