@@ -24,6 +24,7 @@
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat&display=swap");
     </style>
+
     <!---->
 
     <link
@@ -80,10 +81,12 @@
           </a>
         </li>
         <li class="side-nav-item">
-          <a id="settings" href="settings" class="side-nav-link">
+          <!--SETTINGS MODAL BUTTON-->
+          <button type="button" class="btn settingsBtn side-nav-link" data-bs-toggle="modal" data-bs-target="#settingsModal">
             <i class="fa-solid fa-gear"></i>
             <span class="side-link-text">Settings</span>
-          </a>
+          </button>
+
         </li>
         <li class="side-nav-item">
           <a class="side-nav-link" id="logout" href="logout">
@@ -93,7 +96,6 @@
         </li>
       </ul>
     </nav>
-
     {% else %}
 
     <!-- nav bar - user NOT logged in -->
@@ -127,6 +129,28 @@
     </nav>
 
     {% endif %}
+
+    <!-- SETTINGS MODAL -->
+    <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <p class="modal-title fs-5" id="settingsModalLabel"><strong>SETTINGS :</strong></p>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <div class=" p-3 mb-5 bg-body">
+                <!--Dyslexia Font Toggle -->
+                <div class="form-switch">
+                  <input type="checkbox" id="mode1" class="form-check-input">
+                  <label for="mode1" class="form-check-label">Enable Dyslexia Font</label>
+                </div>
+                <!---->
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- System Alerts -->
     {% with messages = get_flashed_messages(with_categories=true) %} {% if
@@ -169,6 +193,7 @@
       crossorigin="anonymous"
     ></script>
 
-  </body>
+    <script src="{{url_for('static', filename='index.js')}}"></script>
 
+  </body>
 </html>

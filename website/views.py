@@ -96,12 +96,6 @@ def event_board():
     
     return render_template("event_board.html", user=current_user, form=form, posts=posts)
 
-
-@views.route('/settings')
-@login_required
-def settings():
-    return render_template("settings.html", user=current_user)
-
 # DELEATE POSTS 
 
 @views.route('delete/<int:id>')
