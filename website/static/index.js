@@ -38,3 +38,85 @@ if (mode1 == 'fontRegular') {
   document.documentElement.classList.remove("fontDyslexia")
   document.documentElement.classList.add("fontRegular")
 }
+
+/* ---------------------------------- */
+
+/* FONT SIZE TOGGLE FUNCTIONS  */
+
+/* set variables for font size toggle status */
+var modeBtn2 = document.getElementById('mode2');
+
+/* toggle font size controls */
+modeBtn2.onchange = (e) => {
+   /* toggle on font size control if applicable */
+  if (modeBtn2.checked === true) {
+    document.documentElement.classList.remove("sizeRegular")
+    document.documentElement.classList.add("sizeIncreased")
+    /* set new toggle status */
+    localStorage.setItem('mode2', 'sizeIncreased');
+  } 
+   /* toggle off font size control if applicable */
+  else {
+    document.documentElement.classList.remove("sizeIncreased")
+    document.documentElement.classList.add("sizeRegular")
+    /* set new toggle status */
+    localStorage.setItem('mode2', 'sizeRegular');
+  }
+}
+
+/* set new font size toggle status */
+var mode2 = window.localStorage.getItem('mode2');
+
+/* set toggle state on page reloads */
+if (mode2 == 'sizeIncreased') {
+  modeBtn2.checked = true;
+  document.documentElement.classList.remove("sizeRegular")
+  document.documentElement.classList.add("sizeIncreased")
+}
+
+if (mode2 == 'sizeRegular') {
+  modeBtn2.checked = false;
+  document.documentElement.classList.remove("sizeIncreased")
+  document.documentElement.classList.add("sizeRegular")
+}
+
+/* ---------------------------------- */
+
+/* DARK MODE TOGGLE FUNCTIONS  */
+
+/* set variables for font size toggle status */
+var modeBtn3 = document.getElementById('mode3');
+
+/* toggle font size controls */
+modeBtn3.onchange = (e) => {
+   /* toggle on font size control if applicable */
+  if (modeBtn3.checked === true) {
+    document.documentElement.classList.remove("lightMode")
+    document.documentElement.classList.add("darkMode")
+    /* set new toggle status */
+    localStorage.setItem('mode3', 'darkMode');
+  } 
+   /* toggle off font size control if applicable */
+  else {
+    document.documentElement.classList.remove("darkMode")
+    document.documentElement.classList.add("lightMode")
+    /* set new toggle status */
+    localStorage.setItem('mode3', 'lightMode');
+  }
+}
+
+/* set new font size toggle status */
+var mode3 = window.localStorage.getItem('mode3');
+
+/* set toggle state on page reloads */
+if (mode3 == 'darkMode') {
+  modeBtn3.checked = true;
+  document.documentElement.classList.remove("lightMode")
+  document.documentElement.classList.add("darkMode")
+}
+
+if (mode3 == 'lightMode') {
+  modeBtn3.checked = false;
+  document.documentElement.classList.remove("darkMode")
+  document.documentElement.classList.add("lightMode")
+}

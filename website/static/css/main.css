@@ -21,11 +21,67 @@
   margin-right: 10px;
 }
 
+/* class toggle font size */
+
+.sizeRegular{
+  --font-size-theme-switch-wrapper: 1rem;
+  --font-size-initial-nav: 20px;
+  --font-size-h1: 60px;
+  --font-size-form-label: 35px;
+  --font-size-login-btn: 20px;
+  --font-size-sign-form-label: 20px;
+  --font-size-sign-btn: 20px;
+  --font-size-side-link-text: 25px;
+  --font-size-side-toggle: 1.5rem;
+  --font-size-h3: 100px;
+  --font-size-team-button-text: 25px;
+  --font-size-instant-msg-text: 15px;
+  --font-size-form-label-alert: 30px;
+  --font-size-alert-post-title: 25px;
+  --font-size-alert-post-content: 20px;
+}
+
+.sizeIncreased {
+  --font-size-theme-switch-wrapper: 3rem;
+  --font-size-initial-nav: 40px;
+  --font-size-h1: 70px;
+  --font-size-form-label: 45px;
+  --font-size-login-btn: 30px;
+  --font-size-sign-form-label: 30px;
+  --font-size-sign-btn: 30px;
+  --font-size-side-link-text: 35px;
+  --font-size-side-toggle: 3rem;
+  --font-size-h3: 120px;
+  --font-size-team-button-text: 35px;
+  --font-size-instant-msg-text: 25px;
+  --font-size-form-label-alert: 40px;
+  --font-size-alert-post-title: 35px;
+  --font-size-alert-post-content: 30px;
+}
+
+/* class toggle dark mode */
+
+.lightMode{
+  --background: #FAFAFA;
+  --color-divider: rgb(102, 100, 100);
+  --color-h3: #212529;
+  --color-h2:#212529;
+  --color-text: #212529;
+}
+
+.darkMode{
+  --background: #292F33;
+  --color-divider: rgb(209, 202, 202);
+  --color-h3: #FAFAFA;
+  --color-h2: #FAFAFA;
+  --color-text: #FAFAFA;
+}
+
 /* Fundementals */
 body {
   font-family: var(--font-family);
   height: 100vh;
-  background: #FAFAFA;
+  background: var(--background);
 }
 
 /* Checkbox */
@@ -37,7 +93,7 @@ body {
 
 .theme-switch-wrapper em {
   margin-left: 10px;
-  font-size: 1rem;
+  font-size: var(--font-size-theme-switch-wrapper);
 }
 
 .theme-switch {
@@ -108,17 +164,17 @@ input:checked + .slider::before {
 .initial-nav {
   margin-bottom: 20px;
   background-color: #61538b;
-  font-size: 20px;
+  font-size: var(--font-size-initial-nav);
 }
 
 /*login form*/
 h1 {
-  font-size: 60px;
+  font-size: var(--font-size-h1);
   color: #261260;
 }
 
 .form-label {
-  font-size: 35px;
+  font-size: var(--font-size-form-label);
   color: #261260;
 }
 
@@ -130,7 +186,7 @@ h1 {
 .login-btn {
   width: 40%;
   height: auto;
-  font-size: 20px;
+  font-size: var(--font-size-login-btn);
   border-radius: 30;
   background-color: #00bf63;
   border: none;
@@ -146,7 +202,7 @@ h1 {
 
 /* sign up form */
 .sign-form-label {
-  font-size: 20px;
+  font-size: var(--font-size-sign-form-label);
   color: #261260;
 }
 
@@ -159,7 +215,7 @@ h1 {
 .sign-btn {
   width: 40%;
   height: auto;
-  font-size: 20px;
+  font-size: var(--font-size-sign-btn);
   border-radius: 30;
   background-color: #38b6ff;
   border: none;
@@ -251,7 +307,7 @@ main {
 .side-link-text {
   display: none;
   margin-left: 1rem;
-  font-size: 25px;
+  font-size: var(--font-size-side-link-text);
 }
 
 .side-nav-link i {
@@ -279,7 +335,7 @@ main {
   text-align: center;
   color: #8e7cc3;
   background: #f6f1f1;
-  font-size: 1.5rem;
+  font-size: var(--font-size-side-toggle);
   text-transform: uppercase;
   letter-spacing: 0.3ch;
   width: 100%;
@@ -291,7 +347,7 @@ main {
   margin-bottom: 1rem;
   text-align: center;
   background: #8e7cc3;
-  font-size: 1.5rem;
+  font-size: var(--font-size-side-toggle);
   text-transform: uppercase;
   letter-spacing: 0.3ch;
   width: 100%;
@@ -376,7 +432,7 @@ i {
 }
 
 .divider{
-  border-bottom: rgb(102, 100, 100);
+  border-bottom: var(--color-divider);
   border-width: 3px;
   border-bottom-style: solid;
   margin-bottom: 40px;
@@ -384,8 +440,13 @@ i {
 
 h3{
   display:inline-block;
-  font-size: 100px;
+  font-size: var(--font-size-h3);
   vertical-align:middle;
+  color: var(--color-h3);
+}
+
+h2{
+  color: var(--color-h2);
 }
 
 .team-button{
@@ -403,10 +464,15 @@ h3{
 
 .team-button-text{
   margin-right: 20px;
-  font-size: 25px;
+  font-size: var(--font-size-team-button-text);
 }
 
 /* Instant Messaging Page */
+
+.instant-msg-text{
+  font-size: var( --font-size-instant-msg-text);
+  color: var(--color-text);
+}
 
 .instant-msg-input{
   width: 75%;
@@ -441,8 +507,12 @@ h3{
 
 .date-msg{
   font-style: italic;
-  color: #3f3f3f;
-  font-size: 10px;
+  color: var(--color-text);
+  font-size: var( --font-size-instant-msg-text);
+}
+
+.instant-msg-divider{
+  color: var(--color-text)
 }
 
 /* Alert Board page */
@@ -484,14 +554,14 @@ h3{
 
 .form-label-alert{
   font-weight: bold;
-  font-size: 30px;
+  font-size: var(---font-size-form-label-alert);
 }
 
 .alert-submit-btn{
   background-color: #00bf63;
   border-radius: 10px;
   float: left;
-  font-size: 30px;
+  font-size: var(---font-size-form-label-alert);
 }
 
 .alert-submit-btn:hover{
@@ -509,11 +579,11 @@ h3{
 
 .alert-post-title{
   font-weight: bold;
-  font-size: 25px;
+  font-size: var(--font-size-alert-post-title);
 }
 
 .alert-post-content{
-  font-size: 20px;
+  font-size: var(--font-size-alert-post-content);
 }
 
 .alert-close-btn{
@@ -528,7 +598,7 @@ h3{
 /* event cards */
 
 .event-post-date{
-  font-size: 20px;
+  font-size: var(--font-size-alert-post-content);
   font-style: italic;
 }
 

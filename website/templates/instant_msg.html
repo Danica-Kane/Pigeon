@@ -7,9 +7,11 @@
 <br/>
 
 {% for post in posts %}
-    <img src="{{ url_for('static', filename='images/' + post.poster.profile_pic )}}" class="profile-pic-msg"> <strong> {{ post.poster.first_name }} </strong> <br/>
-    {{ post.content }} <br/>
-    <p class="date-msg">{{ post.date_posted }} <p> <hr>
+    <p class="instant-msg-text">
+        <img src="{{ url_for('static', filename='images/' + post.poster.profile_pic )}}" class="profile-pic-msg"> <strong> {{ post.poster.first_name }} </strong> <br/>
+        {{ post.content }} <br/>
+    </p>
+    <p class="date-msg">{{ post.date_posted }} <p> <hr class="instant-msg-divider">
 {% endfor %}
 
 <!-- form to create message -->
