@@ -1,4 +1,4 @@
-from flask import Blueprint, flash, render_template, request, session, send_file, redirect
+from flask import Blueprint, flash, render_template, request, session, send_file, redirect, jsonify
 from flask_login import login_required, current_user, login_user
 from .import db
 import os
@@ -15,6 +15,18 @@ from .models import PostsEvent, User
 from flask_wtf import FlaskForm, CSRFProtect
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired, Length
+
+import pusher
+
+# SET UP PUSHER
+
+pusher_client = pusher.Pusher(
+  app_id='1824229',
+  key='86898c90b2ecd38da5d5',
+  secret='c9341ddc2c68c315b791',
+  cluster='us2',
+  ssl=True
+)
 
 #csrf = CSRFProtect(views)
 
@@ -47,6 +59,22 @@ def instant_msg():
     posts = Posts.query.order_by(Posts.date_posted)
         
     return render_template("instant_msg.html", user=current_user, form=form, posts=posts)
+
+@views.route('/message', methods=['POST', 'GET'])
+def message():
+    
+    try : 
+        poster = request.form.get('poster')
+        content = request.form.get('content')
+        date = request.form.get('date')
+        
+        pusher_client.trigger('chat-channel', 'new-message', {'poster' : poster, 'content': content, 'date' : date})
+
+        
+        return jsonify({'result' : 'success'})
+    except : 
+        return jsonify({'result' : 'failure'})
+    
 
 # ALERT BOARD
 

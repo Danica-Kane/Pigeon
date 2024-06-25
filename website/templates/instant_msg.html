@@ -6,20 +6,24 @@
 
 <br/>
 
+<div id="content">
 {% for post in posts %}
-    <p class="instant-msg-text">
-        <img src="{{ url_for('static', filename='images/' + post.poster.profile_pic )}}" class="profile-pic-msg"> <strong> {{ post.poster.first_name }} </strong> <br/>
-        {{ post.content }} <br/>
-    </p>
-    <p class="date-msg">{{ post.date_posted }} <p> <hr class="instant-msg-divider">
+    <div id="message">
+        <p class="instant-msg-text">
+            <strong> {{ post.poster.first_name }} </strong> <br/>
+            {{ post.content }} <br/>
+        </p>
+        <p class="date-msg">{{ post.date_posted }} <p> <hr class="instant-msg-divider">
+    </div>
 {% endfor %}
+</div>
 
 <!-- form to create message -->
 <div class="shadow p-3 mb-5 bg-body rounded">
     <form method="POST">
         {{form.hidden_tag()}}
-        {{form.content (class="form-control instant-msg-input", rows="1")}}
-        <button class="btn instant-msg-btn fa-solid"><i class="fa-paper-plane"></i></button>
+        {{form.content (id="chat_text", class="form-control instant-msg-input", rows="1")}}
+        <button id="chat_btn" class="btn instant-msg-btn fa-solid"><i class="fa-paper-plane"></i></button>
         <!--{{ form.submit(class="btn instant-msg-btn fa-solid")}}-->
     </form>
 </div>
@@ -49,5 +53,56 @@
         </li>
     </ul>
 </nav>
+
+<!--PUSHER SCRIPT-->
+<!--CDN for JQUERY-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script>
+    let poster = "{{current_user.first_name}}";
+    let today = new Date();
+    let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    let dateTime = date+' '+time;
+
+    $(function(){
+        $('#chat_btn').on('click', function(){
+            let content = $('#chat_text').val();
+            $.post('/message', {'poster': poster, 'content' : content, 'date' : dateTime}, function(){
+
+            });
+        });
+
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
+
+        var pusher = new Pusher('86898c90b2ecd38da5d5', {
+            cluster: 'us2'
+        });
+
+        var channel = pusher.subscribe('chat-channel');
+            channel.bind('new-message', function(data) {
+                let name = data.poster;
+                let pic = data.profile_pic
+                let message  = data.content;
+                let day = data.date;
+
+                let message_template = 
+                `
+                <div id="message">
+                    <p class="instant-msg-text">
+                        <strong> ${name} </strong> <br/>
+                        ${message} <br/>
+                    </p>
+                    <p class="date-msg"> ${day} <p> <hr class="instant-msg-divider">
+                </div>
+                `;
+                $('#content').append(message_template);
+        });
+
+
+    });
+
+  </script>
 
 {%endblock%}
