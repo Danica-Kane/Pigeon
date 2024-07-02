@@ -35,13 +35,16 @@
 
         <div class="form-group" align="right">
           <label for="password" class="form-label" >password</label>
+          <p>
           <input
             type="password"
             class="form-control login-input"
             id="password1"
             name="password"
             placeholder="Enter password"
-          />
+          >
+          <br>
+          <input type="checkbox" id="password-toggle" class="visiblity-toggle" onclick="showPassword()">Show Password</input>
         </div>
 
         <br />
@@ -56,4 +59,5 @@
     </div>
   </div>
 </div>
+
 {%endblock%}

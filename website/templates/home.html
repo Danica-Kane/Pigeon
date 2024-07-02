@@ -21,6 +21,11 @@
       </div>
     </div>
   </div>
-
-  {%endblock%}
 </main>
+  {%endblock%}
+
+  {% block script %}
+  <script>
+    $("#homepage-link").addClass("side-nav-link-active");
+  </script>
+  {% endblock%}

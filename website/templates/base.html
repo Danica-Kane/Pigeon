@@ -10,6 +10,8 @@
       crossorigin="anonymous"
     />
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" /> 
+
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
@@ -66,7 +68,7 @@
             <i class="fa-solid fa-circle-chevron-right"></i>
           </a>
         </li>
-        <li class="side-nav-item">
+        <li class="side-nav-item" id="homepage-link">
           <a id="home" href="/" class="side-nav-link">
             <i class="fa-solid fa-house"></i>
             <span class="side-link-text">Home</span>
@@ -74,13 +76,13 @@
         </li>
       </br></br>
         <span class="side-link-text" style="color:white;"><strong>Your Teams</strong></span>
-        <li class="side-nav-item">
+        <li class="side-nav-item" id="team-selected">
           <a href="instant_msg" id="instant-msg" class="side-nav-link" style="margin-bottom: 20vh">
             <i class="fa-solid fa-guitar band-icon"></i>
             <span class="side-link-text">Band</span>
           </a>
         </li>
-        <li class="side-nav-item">
+        <li class="side-nav-item settingsMargin">
           <!--SETTINGS MODAL BUTTON-->
           <button type="button" class="btn settingsBtn side-nav-link" data-bs-toggle="modal" data-bs-target="#settingsModal">
             <i class="fa-solid fa-gear"></i>
@@ -209,6 +211,10 @@
 
     <!--CDN for JQUERY-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    {% block script %} 
+
+    {% endblock%}
 
   </body>
 </html>

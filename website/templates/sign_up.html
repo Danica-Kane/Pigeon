@@ -1,19 +1,15 @@
-{% extends "base.html" %} {% block title%}SignUp{% endblock %} 
-
-{% block head %}
+{% extends "base.html" %} {% block title%}SignUp{% endblock %} {% block head %}
 <link
   rel="stylesheet"
   type="text/css"
   href="{{ url_for('static', filename='css/login.css') }}"
 />
-{% endblock%}
-
-{% block content%}
+{% endblock%} {% block content%}
 <!-- SIGN UP FORM -->
 <form method="POST" enctype="multipart/form-data">
   <h1 align="center"><strong>Sign Up</strong></h1>
   <div class="form-group">
-    <label for="email" class="sign-label">email address</label>
+    <label for="email" class="sign-label"><strong>email address</strong></label>
     <input
       type="email"
       class="form-control sign-input"
@@ -24,7 +20,9 @@
   </div>
 
   <div class="form-group">
-    <label for="first_name" class="sign-label">first name</label>
+    <label for="first_name" class="sign-label"
+      ><strong>first name</strong></label
+    >
     <input
       type="text"
       class="form-control sign-input"
@@ -35,7 +33,7 @@
   </div>
 
   <div class="form-group">
-    <label for="password1" class="sign-label">password</label>
+    <label for="password1" class="sign-label"><strong>password</strong></label>
     <input
       type="password"
       class="form-control sign-input"
@@ -43,10 +41,20 @@
       name="password1"
       placeholder="Enter password"
     />
+    <input
+      type="checkbox"
+      id="password-toggle"
+      class="visiblity-toggle"
+      onclick="showPassword()"
+    />
+    <p style="display: inline">show password</p>
+    <p></p>
   </div>
 
   <div class="form-group">
-    <label for="password2" class="sign-label">password (confirm)</label>
+    <label for="password2" class="sign-label"
+      ><strong>password (confirm)</strong></label
+    >
     <input
       type="password"
       class="form-control sign-input"
@@ -54,21 +62,31 @@
       name="password2"
       placeholder="confirm password"
     />
+    <input
+      type="checkbox"
+      id="password-toggle"
+      class="visiblity-toggle"
+      onclick="showPassword2()"
+    />
+    <p style="display: inline">show password</p>
+    <p></p>
   </div>
 
   <div class="form-group">
-    <label for="profile_pic" class="sign-label">upload profile pic (this cannot be changed later)</label>
+    <label for="profile_pic" class="sign-label"
+      ><strong>upload profile pic (this cannot be changed later)</strong></label
+    >
     <input
       type="file"
       class="form-control file-upload"
       id="profile_pic"
       name="profile_pic"
-      accept = "image/" capture
-      required ="true"
+      accept="image/"
+      capture
+      required="true"
     />
   </div>
-  
-  <button type="submit" class="btn sign-btn">Submit</button>
 
+  <button type="submit" class="btn sign-btn">Submit</button>
 </form>
 {%endblock%}

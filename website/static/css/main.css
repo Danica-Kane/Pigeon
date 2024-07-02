@@ -200,6 +200,10 @@ h1 {
   color: black;
 }
 
+.visiblity-toggle{
+  margin-right: 5px;
+}
+
 /* sign up form */
 .sign-form-label {
   font-size: var(--font-size-sign-form-label);
@@ -232,6 +236,7 @@ h1 {
   margin-bottom: 15px;
   border-radius: 20px;
 }
+
 
 /* main side bar */
 body {
@@ -302,6 +307,21 @@ main {
   background: var(--sidebg-secondary);
   color: var(--sidetext-secondary);
   height: 5rem;
+}
+
+.side-nav-link-active{
+  filter: grayscale(0%) opacity(1);
+  background: var(--sidebg-secondary);
+  color: var(--sidetext-secondary);
+  height: 5rem;
+}
+
+.side-nav-link-active2{
+  filter: grayscale(0%) opacity(1);
+  background: var(--sidebg-secondary);
+  color: var(--sidetext-secondary);
+  height: 5rem;
+  margin-bottom: 8rem;
 }
 
 .side-link-text {
