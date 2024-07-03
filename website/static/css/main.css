@@ -78,6 +78,7 @@
 }
 
 /* Fundementals */
+
 body {
   font-family: var(--font-family);
   height: 100vh;
@@ -545,6 +546,19 @@ h2{
 
 .instant-msg-divider{
   color: var(--color-text)
+}
+
+.message-close-btn{
+  float: right;
+  padding-top: 3px;
+  padding-left: 3px;
+  padding-right: 3px;
+  padding-bottom: 0px;
+  color: #212529;
+}
+
+.x{
+  color: #212529;
 }
 
 /* Alert Board page */

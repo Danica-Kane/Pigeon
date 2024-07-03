@@ -1,4 +1,9 @@
-
+/* FADE FLASH ALERTS */
+window.setTimeout(function() {
+  var alert = document.getElementById("alert");
+  $(".alert").fadeTo(500, 0) 
+  alert.remove();
+}, 4000);
 
 /* TOGGLE PASSWORD VISIBILITY */
 

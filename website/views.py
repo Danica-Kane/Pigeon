@@ -15,6 +15,7 @@ from .models import PostsEvent, User
 from flask_wtf import FlaskForm, CSRFProtect
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired, Length
+import time
 
 import pusher
 
@@ -140,7 +141,7 @@ def delete(id):
         except:
             return "there was a problem"
     else:
-        flash("you are not authorised to delete this alert. ")
+        flash("you are not authorised to delete this alert. ", category='error')
         return redirect('/alert_board')
     
 @views.route('delete_event/<int:id>')
@@ -157,5 +158,22 @@ def delete_event(id):
         except:
             return "there was a problem"
     else:
-        flash("you are not authorised to delete this event. ")
+        flash("you are not authorised to delete this event. ", category='error')
         return redirect('/event_board')
+    
+    
+@views.route('delete_message/<int:id>')
+@login_required
+def delete_message(id):
+    message_to_delete = Posts.query.get_or_404(id)
+    id = current_user.id
+
+    if id == message_to_delete.poster_id:
+        try:
+            db.session.delete(message_to_delete)
+            db.session.commit()
+            return redirect('/instant_msg')
+        except:
+            return "there was a problem"
+    else:
+        return redirect('/instant_msg')

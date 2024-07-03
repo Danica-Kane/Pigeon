@@ -39,9 +39,9 @@
                 <form method="POST">
                     {{form.hidden_tag()}}
                     {{form.title.label (class="form-label-alert")}} <br/>
-                    {{form.title (class="form-control alert-title-input", placeholder="What is your alert about?")}} <br/> <br/>
+                    {{form.title (class="form-control alert-title-input", placeholder="What is your alert about?", required='required')}} <br/> <br/>
                     {{form.content.label (class="form-label-alert")}}<br/>
-                    {{form.content (class="form-control alert-content-input", placeholder="Put the details of your alert here", rows="5")}}
+                    {{form.content (class="form-control alert-content-input", placeholder="Put the details of your alert here", rows="5", required='required')}}
                     <br/><br/>
                     {{ form.submit(class="btn alert-submit-btn")}}
                 </form>

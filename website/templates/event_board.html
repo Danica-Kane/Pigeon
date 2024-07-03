@@ -39,13 +39,13 @@
                 <form method="POST">
                     {{form.hidden_tag()}}
                     {{form.title.label (class="form-label-alert")}} <br/>
-                    {{form.title (class="form-control alert-title-input", placeholder="What is your event about?")}} <br/> <br/>
+                    {{form.title (class="form-control alert-title-input", placeholder="What is your event about?", required='required')}} <br/> <br/>
                     {{form.entrydate.label (class="form-label-alert")}} <br/>
-                    {{form.entrydate (class="form-control DateTimeField")}} <br/> <br/>
+                    {{form.entrydate (class="form-control DateTimeField", required='required')}} <br/> <br/>
                     {{form.time.label (class="form-label-alert")}} <br/>
-                    {{form.time (class="form-control alert-title-input", placeholder="What time is your event")}} <br/> <br/>
+                    {{form.time (class="form-control alert-title-input", placeholder="What time is your event", required='required')}} <br/> <br/>
                     {{form.content.label (class="form-label-alert")}}<br/>
-                    {{form.content (class="form-control alert-content-input", placeholder="Put the details of your event here", rows="5")}}
+                    {{form.content (class="form-control alert-content-input", placeholder="Put the details of your event here", rows="5", required='required')}}
                     <br/><br/>
                     {{ form.submit(class="btn alert-submit-btn")}}
                 </form>
