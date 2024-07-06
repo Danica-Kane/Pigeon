@@ -53,7 +53,8 @@ def sign_up():
                 
         user = User.query.filter_by(email = email).first()
         if user:
-            flash('Email already exists', category='error')   
+            flash('An account with this email already exists', category='error')
+            return redirect(url_for('auth.sign_up'))   
         if len(email) < 4:
                 flash('Email must be greater than 3 characters', category='error')
         elif len(first_name) < 2:
