@@ -57,7 +57,7 @@ def sign_up():
         profile_pic = request.files["profile_pic"]
         
         picName = str(uuid.uuid1()) + os.path.splitext(profile_pic.filename)[1]
-        profile_pic.save(os.path.join("/Users/danicakane/Downloads/Pigeon/website/static/images", picName))
+        profile_pic.save(os.path.join("/Pigeon/website/static/images", picName))
         
         # security / form requrirements and errors 
         user = User.query.filter_by(email = email).first()
