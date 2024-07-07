@@ -1,3 +1,7 @@
+document.documentElement.classList.add("fontRegular")
+document.documentElement.classList.add("sizeRegular")
+document.documentElement.classList.add("lightMode")
+
 /* FADE FLASH ALERTS */
 window.setTimeout(function() {
   var alert = document.getElementById("alert");
