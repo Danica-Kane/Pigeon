@@ -1,82 +1,141 @@
-{% extends "base.html" %} {% block title%}Alert Board{% endblock %} {% block content %}
+{% extends "base.html" %} {% block title%}Alert Board{% endblock %} {% block
+content %}
 
 <main>
+  <!-- ||||||||||||||||||||||||||||||||||||| -->
 
-<!-- display messages -->
+  <!-- DISPLAY ALERT -->
 
-<br/>
+  <br />
 
-{% for postalert in posts %}
-    <div class="alert-post-card">
-        <a href="/delete/{{postalert.id}}" class="btn alert-close-btn"><i class="fa-solid fa-xmark"></i></a>
-        <p class="alert-post-title">Alert: {{ postalert.title }}</p>
-        <p class="alert-post-content">{{ postalert.content }} </p>
-        <hr>
-        <img src="{{ url_for('static', filename='images/' + postalert.posteralert.profile_pic )}}" class="profile-pic-msg">
-        <strong>{{ postalert.posteralert.first_name }}</strong>
-    </div>
-    <br/><br/>
-{% endfor %}
+  <!-- Cycle through for each alert in the posts db -->
+  {% for postalert in posts %}
+  <div class="alert-post-card">
+    <!-- display delate post button -->
+    <a href="/delete/{{postalert.id}}" class="btn alert-close-btn"
+      ><i class="fa-solid fa-xmark"></i
+    ></a>
+    <!-- display alert title -->
+    <p class="alert-post-title">Alert: {{ postalert.title }}</p>
+    <!-- display alert content -->
+    <p class="alert-post-content">{{ postalert.content }}</p>
+    <hr />
+    <!-- display username of poster and posters profile picture -->
+    <img
+      src="{{ url_for('static', filename='images/' + postalert.posteralert.profile_pic )}}"
+      class="profile-pic-msg"
+    />
+    <strong>{{ postalert.posteralert.first_name }}</strong>
+  </div>
+  <br /><br />
+  {% endfor %}
 
-<!-- Form to create message -->
+  <!-- ||||||||||||||||||||||||||||||||||||| -->
 
-<!-- Button trigger modal -->
-<button type="button" class="btn alert-create-btn shadow" data-bs-toggle="modal" data-bs-target="#alertModal">
+  <!-- CREATE ALERT FORM -->
+
+  <!-- Button to trigger modal with alert form -->
+  <button
+    type="button"
+    class="btn alert-create-btn shadow"
+    data-bs-toggle="modal"
+    data-bs-target="#alertModal"
+  >
     <i class="fa-solid fa-circle-plus"></i>
-    <p class="alert-text" >-- Create Alert</p>
+    <p class="alert-text">-- Create Alert</p>
   </button>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
+
+  <!-- Alert Form Modal -->
+  <div
+    class="modal fade"
+    id="alertModal"
+    tabindex="-1"
+    aria-labelledby="alertModalLabel"
+    aria-hidden="true"
+  >
     <div class="modal-dialog">
       <div class="modal-content">
+        <!-- Modal Header -->
         <div class="modal-header">
-          <p class="modal-title fs-5" id="alertModalLabel"><strong>Create Alert</strong></p>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <!-- Title of model -->
+          <p class="modal-title fs-5" id="alertModalLabel">
+            <strong>Create Alert</strong>
+          </p>
+          <!-- close modal button -->
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
         </div>
         <div class="modal-body">
-            <div class=" p-3 mb-5 bg-body">
-                <form method="POST">
-                    {{form.hidden_tag()}}
-                    {{form.title.label (class="form-label-alert")}} <br/>
-                    {{form.title (class="form-control alert-title-input", placeholder="What is your alert about?", required='required')}} <br/> <br/>
-                    {{form.content.label (class="form-label-alert")}}<br/>
-                    {{form.content (class="form-control alert-content-input", placeholder="Put the details of your alert here", rows="5", required='required')}}
-                    <br/><br/>
-                    {{ form.submit(class="btn alert-submit-btn")}}
-                </form>
-            </div>
+          <div class="p-3 mb-5 bg-body">
+            <!-- Create alert form -->
+            <form method="POST">
+              {{form.hidden_tag()}}
+              <!-- input/label for alert title -->
+              {{form.title.label(class="form-label-alert")}} <br />
+              {{form.title (class="form-control alert-title-input",
+              placeholder="What is your alert about?", required='required')}}
+              <br />
+              <br />
+              <!-- input/label for alert content -->
+              {{form.content.label (class="form-label-alert")}}<br />
+              {{form.content (class="form-control alert-content-input",
+              placeholder="Put the details of your alert here", rows="5",
+              required='required')}}
+              <br /><br />
+              <!-- submit button -->
+              {{ form.submit(class="btn alert-submit-btn")}}
+            </form>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- ||||||||||||||||||||||||||||||||||||| -->
 </main>
+
+<!-- ||||||||||||||||||||||||||||||||||||| -->
+
 <!--SECONDARY NAVBAR-->
 <nav id="secondary-nav" class="navbar navbar-expand fixed-bottom sub-nav">
-    <ul class="navbar-nav sub-nav-centered">
-        <li class="nav-item">
-            <a class="nav-link" href="alert_board">
-                <i class="active-secondary-nav fa-solid fa-bell sub-nav-icon"></i>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="instant_msg">
-                <i class="sub-nav-icon fa-solid fa-comments"></i>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="event_board">
-                <i class="sub-nav-icon fa-solid fa-calendar-days"></i>
-            </a>
-        </li>
-    </ul>
+  <!-- nav links -->
+  <ul class="navbar-nav sub-nav-centered">
+    <!-- alert board link -->
+    <li class="nav-item">
+      <a class="nav-link" href="alert_board">
+        <i class="active-secondary-nav fa-solid fa-bell sub-nav-icon"></i>
+      </a>
+    </li>
+    <!-- instant msg channel link-->
+    <li class="nav-item">
+      <a class="nav-link" href="instant_msg">
+        <i class="sub-nav-icon fa-solid fa-comments"></i>
+      </a>
+    </li>
+    <!-- event board link -->
+    <li class="nav-item">
+      <a class="nav-link" href="event_board">
+        <i class="sub-nav-icon fa-solid fa-calendar-days"></i>
+      </a>
+    </li>
+  </ul>
 </nav>
 
+<!-- ||||||||||||||||||||||||||||||||||||| -->
+
 {%endblock%}
+
+<!-- ||||||||||||||||||||||||||||||||||||| -->
+
+<!-- PRIMARY NAVIGATION BAR ACTIVE LINK SCRIPT -->
 
 {% block script %}
 <script>
   $("#team-selected").addClass("side-nav-link-active2");
 </script>
 {% endblock%}
+

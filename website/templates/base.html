@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- STYLESHEET LINKS - BOOTSTRAPP - ICON LIBRARY LINKS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -22,12 +24,12 @@
       rel="stylesheet"
     />
 
-    <!-- google fonts -->
+    <!-- GOOGLE FONT IMPORT -->
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat&display=swap");
     </style>
 
-    <!---->
+    <!-- STYLESHEET LINKS - CSS FILES -->
 
     <link
       rel="stylesheet"
@@ -44,14 +46,18 @@
     {% block head%}{% endblock%}
   </head>
   <body>
-    <!-- NAV BARS -->
+
+    <!-- ||||||||||||||||||||||||||||||||||||| -->
+
+    <!-- NAVIGATION BARS  -->
 
     {% if user.is_authenticated %}
 
-    <!-- nav bar - user IS logged in, main side bar -->
+    <!-- PRIMARY NAVIGATION BAR (POST USER LOGIN) -->
 
     <nav class="side-navbar" id="side-navbar">
       <ul class="side-navbar-nav">
+        <!-- primary nav bar logo -->
         <li class="side-logo">
           <a href="#" class="side-nav-non-link">
             <img
@@ -63,11 +69,13 @@
             <span class="side-link-text">pigeon</span>
           </a>
         </li>
+        <!-- primary nav active/deactivated toggle icon -->
         <li class="side-toggle">
           <a href="#" class="side-nav-non-link">
             <i class="fa-solid fa-circle-chevron-right"></i>
           </a>
         </li>
+        <!-- home page link-->
         <li class="side-nav-item" id="homepage-link">
           <a id="home" href="/" class="side-nav-link">
             <i class="fa-solid fa-house"></i>
@@ -75,6 +83,7 @@
           </a>
         </li>
       </br></br>
+      <!-- teams links -->
         <span class="side-link-text" style="color:white;"><strong>Your Teams</strong></span>
         <li class="side-nav-item" id="team-selected">
           <a href="instant_msg" id="instant-msg" class="side-nav-link" style="margin-bottom: 20vh">
@@ -82,14 +91,15 @@
             <span class="side-link-text">Band</span>
           </a>
         </li>
+        <!-- settings link -->
         <li class="side-nav-item settingsMargin">
-          <!--SETTINGS MODAL BUTTON-->
+          <!-- modal for settings page -->
           <button type="button" class="btn settingsBtn side-nav-link" data-bs-toggle="modal" data-bs-target="#settingsModal">
             <i class="fa-solid fa-gear"></i>
             <span class="side-link-text">Settings</span>
           </button>
-
         </li>
+        <!-- logout button -->
         <li class="side-nav-item">
           <a class="side-nav-link" id="logout" href="logout">
             <i class="fa-solid fa-right-from-bracket"></i>
@@ -98,12 +108,14 @@
         </li>
       </ul>
     </nav>
+
     {% else %}
 
-    <!-- nav bar - user NOT logged in -->
+    <!-- PRIMARY NAVIGATION BAR (PRE USER LOGIN ) -->
 
     <nav class="navbar navbar-expand-lg initial-nav">
       <div class="container-fluid">
+        <!-- hamburger toggle nav icon -->
         <button
           class="navbar-toggler"
           type="button"
@@ -117,9 +129,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <!-- link to login page -->
             <li class="nav-item">
               <a class="nav-item nav-link" id="login" href="login">Login</a>
             </li>
+            <!-- link to sign up page -->
             <li class="nav-item">
               <a class="nav-item nav-link" id="signUp" href="sign-up"
                 >Sign Up</a
@@ -132,11 +146,15 @@
 
     {% endif %}
 
+    <!-- ||||||||||||||||||||||||||||||||||||| -->
+
+
     <!-- SETTINGS MODAL -->
     <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
+            <!-- modal header -->
             <p class="modal-title fs-5" id="settingsModalLabel"><strong>SETTINGS :</strong></p>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
@@ -163,13 +181,20 @@
       </div>
     </div>
 
-    <!-- System Alerts -->
+      <!-- ||||||||||||||||||||||||||||||||||||| -->
+
+      <!-- ALERTS -->
+
+    <!-- System Alerts - display as activated on auth and veiws py files -->
     {% with messages = get_flashed_messages(with_categories=true) %} {% if
     messages %} {%for catergory, message in messages %} {% if catergory
     =='error' %}
     <br>
+    <!-- Error alert -->
     <div id="alert" class="alert alert-danger alter-dissmissable fade show" role="alert">
+      <!-- alert content pulled from py files -->
       {{ message }}
+      <!-- dismiss alert button -->
       <button
         type="button"
         class="btn-close"
@@ -180,8 +205,11 @@
     </div>
     {% else %}
     <br>
+    <!-- Succsess alert -->
     <div id="alert" class="alert alert-success alter-dissmissable fade show" role="alert">
+      <!-- alert content pulled from py files -->
       {{ message }}
+       <!-- dismiss alert button -->
       <button
         type="button"
         class="btn-close"
@@ -192,19 +220,29 @@
     </div>
     {% endif %} {% endfor%} {% endif %} {% endwith%}
 
+      <!-- ||||||||||||||||||||||||||||||||||||| -->
+
+      <!-- PAGE CONTENT PULLED FROM HTML TEMPLATES -->
+
     <div class="container">{% block content %} {% endblock %}</div>
 
+      <!-- ||||||||||||||||||||||||||||||||||||| -->
+      <!-- SCRIPTS  -->
+
+      <!-- Bootstrap script -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
 
+    <!-- font awesome script -->
     <script
       src="https://kit.fontawesome.com/fd2345382d.js"
       crossorigin="anonymous"
     ></script>
 
+    <!-- JS file script link -->
     <script src="{{url_for('static', filename='index.js')}}"></script>
 
     <!--import script for pusher-->

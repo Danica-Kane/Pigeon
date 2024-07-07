@@ -1,17 +1,23 @@
 {% extends "base.html" %} {% block title%}Home{% endblock %} {% block content %}
 
 <main>
-  <!-- style page -->
   <div class"container">
+    <!-- ||||||||||||||||||||||||||||||||||||| -->
+
+    <!-- DISPLAY USERNAME & PROFILE PIC -->
     <div class="row divider">
       <div class='col-md'>
         <img src="{{ url_for('static', filename='images/' + user.profile_pic )}}" class="profile_pic">
         <h3>{{user.first_name}}<h3>
       </div>
     </div>
+    <!-- ||||||||||||||||||||||||||||||||||||| -->
+
+    <!-- DISPLAY USER'S TEAMS -->
       <div class='row'>
         <h2><strong>YOUR TEAMS<strong></h2>
 
+          <!-- button to the team's instant message channel -->
         <a href="instant_msg">
           <button class="team-button">
             <span class="team-button-text"> <strong> Band <strong> </span>
@@ -23,6 +29,10 @@
   </div>
 </main>
   {%endblock%}
+
+  <!-- ||||||||||||||||||||||||||||||||||||| -->
+  
+<!-- PRIMARY NAVIGATION BAR ACTIVE LINK SCRIPT -->
 
   {% block script %}
   <script>

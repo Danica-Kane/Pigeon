@@ -5,6 +5,7 @@
   href="{{ url_for('static', filename='css/login.css') }}"
 />
 {% endblock%} {% block content %}
+<!-- PAGE IMAGES -->
 <div class"container">
   <div class="row">
     <div class='col-md'>
@@ -16,11 +17,16 @@
       />
     </div>
     <div class="col-md">
+
+<!-- ||||||||||||||||||||||||||||||||||||| -->
+
       <!-- LOGIN FORM -->
+
       <form method="POST" class="login-form">
         <h1 align="right"><strong>Login</strong></h1>
       </br>
         <div class="form-group" align="right">
+          <!-- input email adress -->
           <label class="form-label" for="email">email address</label>
           <input
             type="email"
@@ -33,6 +39,7 @@
 
         </br>
 
+        <!-- input password -->
         <div class="form-group" align="right">
           <label for="password" class="form-label" >password</label>
           <p>
@@ -44,12 +51,15 @@
             placeholder="Enter password"
           >
           <br>
+          <!-- show password button -->
           <input type="checkbox" id="password-toggle" class="visiblity-toggle" onclick="showPassword()">Show Password</input>
         </div>
 
         <br />
         
+        <!-- submit button for login -->
         <button type="submit" class="btn login-btn">login</button>
+        <!-- button redirect to sign in page -->
         <a href="sign-up">
         <button type="button" class="btn sign-btn">sign up</button>
         </a>

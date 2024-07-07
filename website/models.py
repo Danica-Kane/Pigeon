@@ -1,3 +1,4 @@
+# IMPORTS 
 from.import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
@@ -8,6 +9,7 @@ from wtforms.validators import DataRequired, Length
 from wtforms.widgets import TextArea
 from wtforms.fields import DateField,DateTimeField, TimeField
 
+# DB model for users 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(150), unique=True)

@@ -1,3 +1,4 @@
+# IMPORTS 
 import os
 import uuid
 from flask import Blueprint, render_template, request, flash, redirect, url_for, session
@@ -11,9 +12,11 @@ from flask_login import login_user, login_required, logout_user, current_user
 
 auth = Blueprint('auth', __name__)
 
+# LOGIN PAGE 
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
+    # Login form - compare user inputs to database
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
@@ -32,6 +35,7 @@ def login():
     return render_template("login.html", user=current_user)
 
 
+# LOGOUT ROUTE - REDIRECT TO LOGIN PAGE
 @auth.route('/logout')
 @login_required
 def logout():
@@ -39,9 +43,13 @@ def logout():
     return redirect(url_for('auth.login'))
 
 
+# SIGN UP PAGE 
+
 @auth.route('/sign-up', methods=['GET', 'POST'])
 def sign_up():
+    # Sign up form 
     if request.method == "POST":
+        # get data from form 
         email = request.form.get('email')
         first_name = request.form.get('first_name')
         password1 = request.form.get('password1')
@@ -50,7 +58,8 @@ def sign_up():
         
         picName = str(uuid.uuid1()) + os.path.splitext(profile_pic.filename)[1]
         profile_pic.save(os.path.join("/Users/danicakane/Downloads/Pigeon/website/static/images", picName))
-                
+        
+        # security / form requrirements and errors 
         user = User.query.filter_by(email = email).first()
         if user:
             flash('An account with this email already exists', category='error')
@@ -69,6 +78,7 @@ def sign_up():
             db.session.commit()
             login_user(new_user, remember=True)
             flash('Account created!', category='succsess')
+            # Redirect to home page if successful
             return redirect(url_for('views.home'))
 
     return render_template("sign_up.html", user=current_user)

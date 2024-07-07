@@ -2,10 +2,13 @@
 block content %}
 
 <main>
-  <!-- display messages -->
+<!-- ||||||||||||||||||||||||||||||||||||| -->
+
+  <!-- DISPLAY MESSAGES -->
 
   <br />
 
+  <!-- Default welcome message display -->
   <div id="content">
     <div id="message">
       <p class="instant-msg-text">
@@ -17,15 +20,20 @@ block content %}
       <hr class="instant-msg-divider" />
     </div>
 
+    <!-- Cycle through for each post in posts db-->
     {% for post in posts %}
     <div id="message">
+      <!-- if current user owns post display deleate button -->
       {% if post.poster_id == current_user.id%}
       <a href="/delete_message/{{post.id}}" class="btn message-close-btn"><i class="x fa-solid fa-x"></i></a>
       {% endif %}
+      <!-- display poster username -->
       <p class="instant-msg-text">
         <strong> {{ post.poster.first_name }} </strong> <br />
+        <!-- display message content-->
         {{ post.content }} <br />
       </p>
+      <!-- display date posted -->
       <p class="date-msg">{{ post.date_posted }}</p>
       <p></p>
       <hr class="instant-msg-divider" />
@@ -33,11 +41,16 @@ block content %}
     {% endfor %}
   </div>
 
-  <!-- form to create message -->
+<!-- ||||||||||||||||||||||||||||||||||||| -->
+
+<!-- FORM TO CREATE MESSAGES -->
+
   <div class="shadow p-3 mb-5 bg-body rounded instant-msg-div">
     <form method="POST">
+      <!-- input message content -->
       {{form.hidden_tag()}} {{form.content (id="chat_text", class="form-control
       instant-msg-input", rows="1")}}
+      <!-- submit button -->
       <button id="chat_btn" class="btn instant-msg-btn fa-solid">
         <i class="fa-paper-plane"></i>
       </button>
@@ -51,19 +64,25 @@ block content %}
   <br />
 </main>
 
+<!-- ||||||||||||||||||||||||||||||||||||| -->
+
 <!--SECONDARY NAVBAR-->
+
 <nav id="secondary-nav" class="navbar navbar-expand fixed-bottom sub-nav">
   <ul class="navbar-nav sub-nav-centered">
+    <!-- alert board link -->
     <li class="nav-item">
       <a class="nav-link" href="alert_board">
         <i class="fa-solid fa-bell sub-nav-icon"></i>
       </a>
     </li>
+    <!-- instant msg channel link -->
     <li class="nav-item">
       <a class="nav-link" href="instant_msg">
         <i class="active-secondary-nav sub-nav-icon fa-solid fa-comments"></i>
       </a>
     </li>
+    <!-- event board link -->
     <li class="nav-item">
       <a class="nav-link" href="event_board">
         <i class="sub-nav-icon fa-solid fa-calendar-days"></i>
@@ -72,17 +91,22 @@ block content %}
   </ul>
 </nav>
 
-<!--PUSHER SCRIPT-->
+<!-- ||||||||||||||||||||||||||||||||||||| -->
+
 <!--CDN for JQUERY-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
+<!--PUSHER SCRIPT - Third party websockets provider -->
+
 <script>
+  //automatically scroll to bottom of page 
   window.scrollTo({
     left: 0,
     top: document.body.scrollHeight,
     behavior: "instant",
   });
 
+  //set variables for message
   let poster = "{{current_user.first_name}}";
   let today = new Date();
   let date =
@@ -91,6 +115,7 @@ block content %}
     today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
   let dateTime = date + " " + time;
 
+  //on form submission gather data
   $(function () {
     $("#chat_btn").on("click", function () {
       let content = $("#chat_text").val();
@@ -108,6 +133,7 @@ block content %}
       cluster: "us2",
     });
 
+    // push data to pusher and pull back from pusher to display using html template
     var channel = pusher.subscribe("chat-channel");
     channel.bind("new-message", function (data) {
       let name = data.poster;
@@ -125,6 +151,7 @@ block content %}
                 </div>
                 `;
       $("#content").append(message_template);
+      //automatically scroll to bottom of page 
       window.scrollTo({
         left: 0,
         top: document.body.scrollHeight,
@@ -135,6 +162,10 @@ block content %}
 </script>
 
 {%endblock%}
+
+<!-- ||||||||||||||||||||||||||||||||||||| -->
+
+<!-- PRIMARY NAVIGATION BAR ACTIVE LINK SCRIPT -->
 
 {% block script %}
 <script>

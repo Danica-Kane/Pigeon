@@ -1,3 +1,4 @@
+# IMPORTS 
 from flask import Blueprint, flash, render_template, request, session, send_file, redirect, jsonify
 from flask_login import login_required, current_user, login_user
 from .import db
@@ -34,17 +35,19 @@ pusher_client = pusher.Pusher(
 
 views = Blueprint('views', __name__)
 
+# HOME PAGE
 
 @views.route('/', methods=['GET', 'POST'])
 @login_required
-def home():
-    
+def home(): 
     return render_template("home.html", user=current_user)
 
 
+# INSTANT MESSAGING CHANNEL 
 @views.route('/instant_msg', methods=['GET', 'POST'])
 @login_required
 def instant_msg():
+    # message form 
     form = PostForm()
     
     if form.validate_on_submit():
@@ -61,6 +64,7 @@ def instant_msg():
         
     return render_template("instant_msg.html", user=current_user, form=form, posts=posts)
 
+# PUSHER TEMP MESSAGE DISPLAY UNTILL DATABASE REFRESH
 @views.route('/message', methods=['POST', 'GET'])
 def message():
     
@@ -78,7 +82,6 @@ def message():
     
 
 # ALERT BOARD
-
 @views.route('/alert_board', methods=["GET", "POST"])
 @login_required
 def alert_board():

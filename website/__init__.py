@@ -1,10 +1,15 @@
+# IMPORTS 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager
 
+# SET UP DATABASE
+
 db = SQLAlchemy()
 DB_NAME = "databse.db"
+
+# CREATE APP - GATHER NESSEARY DATA/INFORMATION FROM OTHER PY FILES
 
 def create_app():
     app = Flask(__name__, static_url_path='/static')

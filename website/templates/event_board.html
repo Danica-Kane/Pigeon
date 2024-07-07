@@ -1,36 +1,46 @@
 {% extends "base.html" %} {% block title%}Event Board{% endblock %} {% block content %}
 
 <main>
-<!-- display messages -->
+<!-- ||||||||||||||||||||||||||||||||||||| -->
+<!-- DISPLAY EVENTS -->
 
 <br/>
 
+<!-- Cycle through for each event in the posts db -->
 {% for postevent in posts %}
     <div class="alert-post-card">
+        <!-- display delate post button -->
         <a href="/delete_event/{{postevent.id}}" class="btn alert-close-btn"><i class="fa-solid fa-xmark"></i></a>
+        <!-- display event title -->
         <p class="alert-post-title">Event: {{ postevent.title }}</p>
+        <!-- display event time and date -->
         <p class="event-post-date">Event on : {{ postevent.entrydate }} | at : {{ postevent.time }}</p>
+        <!-- display event content -->
         <p class="alert-post-content">{{ postevent.content }} </p>
         <hr>
+        <!-- display poster username and profile pic -->
         <img src="{{ url_for('static', filename='images/' + postevent.posterevent.profile_pic )}}" class="profile-pic-msg">
         <strong>{{ postevent.posterevent.first_name }}</strong>
     </div>
     <br/><br/>
 {% endfor %}
 
-<!-- Form to create message -->
+<!-- ||||||||||||||||||||||||||||||||||||| -->
 
-<!-- Button trigger modal -->
+<!-- EVENT CREATION FORM  -->
+
+<!-- Button to trigger event modal -->
 <button type="button" class="btn alert-create-btn shadow" data-bs-toggle="modal" data-bs-target="#eventModal">
     <i class="fa-solid fa-circle-plus"></i>
     <p class="alert-text" >-- Create Event</p>
 </button>
   
-  <!-- Modal -->
+  <!-- Event Form Modal -->
   <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
+            <!-- Modal header -->
           <p class="modal-title fs-5" id="eventModalLabel"><strong>Create Event</strong></p>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
@@ -38,15 +48,20 @@
             <div class=" p-3 mb-5 bg-body">
                 <form method="POST">
                     {{form.hidden_tag()}}
+                    <!-- input event title -->
                     {{form.title.label (class="form-label-alert")}} <br/>
                     {{form.title (class="form-control alert-title-input", placeholder="What is your event about?", required='required')}} <br/> <br/>
+                    <!-- input event date -->
                     {{form.entrydate.label (class="form-label-alert")}} <br/>
                     {{form.entrydate (class="form-control DateTimeField", required='required')}} <br/> <br/>
+                    <!-- input event time -->
                     {{form.time.label (class="form-label-alert")}} <br/>
                     {{form.time (class="form-control alert-title-input", placeholder="What time is your event", required='required')}} <br/> <br/>
+                    <!-- input event content -->
                     {{form.content.label (class="form-label-alert")}}<br/>
                     {{form.content (class="form-control alert-content-input", placeholder="Put the details of your event here", rows="5", required='required')}}
                     <br/><br/>
+                    <!-- submit button -->
                     {{ form.submit(class="btn alert-submit-btn")}}
                 </form>
             </div>
@@ -55,20 +70,24 @@
     </div>
   </div>
 
+<!-- ||||||||||||||||||||||||||||||||||||| -->
 
 <!--SECONDARY NAVBAR-->
 <nav id="secondary-nav" class="navbar navbar-expand fixed-bottom sub-nav">
     <ul class="navbar-nav sub-nav-centered">
+        <!-- alert board link -->
         <li class="nav-item">
             <a class="nav-link" href="alert_board">
                 <i class="fa-solid fa-bell sub-nav-icon"></i>
             </a>
         </li>
+        <!-- instant msg channel link -->
         <li class="nav-item">
             <a class="nav-link" href="instant_msg">
                 <i class="sub-nav-icon fa-solid fa-comments"></i>
             </a>
         </li>
+        <!-- event board link -->
         <li class="nav-item">
             <a class="nav-link" href="event_board">
                 <i class="active-secondary-nav sub-nav-icon fa-solid fa-calendar-days"></i>
@@ -77,6 +96,10 @@
     </ul>
 </nav>
 {%endblock%}
+
+<!-- ||||||||||||||||||||||||||||||||||||| -->
+
+<!-- PRIMARY NAVIGATION BAR ACTIVE LINK SCRIPT -->
 
 {% block script %}
 <script>
