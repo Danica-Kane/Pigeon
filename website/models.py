@@ -15,7 +15,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(150), unique=True)
     password = db.Column(db.String(150))
     first_name = db.Column(db.String(150))
-    profile_pic = db.Column(db.String(150))
+    #profile_pic = db.Column(db.String(150))
     date = db.Column(db.DateTime(timezone=True), default=func.now())
     #user can have many posts
     posts = db.relationship('Posts', backref='poster')

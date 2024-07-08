@@ -21,8 +21,13 @@ content %}
     <p class="alert-post-content">{{ postalert.content }}</p>
     <hr />
     <!-- display username of poster and posters profile picture -->
-    <img
+    <!--<img
       src="{{ url_for('static', filename='images/' + postalert.posteralert.profile_pic )}}"
+      class="profile-pic-msg"
+    />-->
+
+    <img
+      src="{{ url_for('static', filename='user-default.webp')}}"
       class="profile-pic-msg"
     />
     <strong>{{ postalert.posteralert.first_name }}</strong>

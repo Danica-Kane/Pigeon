@@ -19,7 +19,11 @@
         <p class="alert-post-content">{{ postevent.content }} </p>
         <hr>
         <!-- display poster username and profile pic -->
-        <img src="{{ url_for('static', filename='images/' + postevent.posterevent.profile_pic )}}" class="profile-pic-msg">
+        <!--<img src="{{ url_for('static', filename='images/' + postevent.posterevent.profile_pic )}}" class="profile-pic-msg">-->
+        <img
+            src="{{ url_for('static', filename='user-default.webp')}}"
+            class="profile-pic-msg"
+        />
         <strong>{{ postevent.posterevent.first_name }}</strong>
     </div>
     <br/><br/>
