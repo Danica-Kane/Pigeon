@@ -7,6 +7,7 @@ from wtforms import FileField
 from website import DB_NAME
 from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import secure_filename
 from .import db
 from flask_login import login_user, login_required, logout_user, current_user
 
@@ -54,10 +55,11 @@ def sign_up():
         first_name = request.form.get('first_name')
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
+        
         profile_pic = request.files["profile_pic"]
         
         picName = str(uuid.uuid1()) + os.path.splitext(profile_pic.filename)[1]
-        profile_pic.save(os.path.join("/Pigeon/website/static/images", picName))
+        profile_pic.save(os.path.join("/Users/danicakane/Downloads/Pigeon/website/static/images", picName))
         
         # security / form requrirements and errors 
         user = User.query.filter_by(email = email).first()
@@ -82,3 +84,10 @@ def sign_up():
             return redirect(url_for('views.home'))
 
     return render_template("sign_up.html", user=current_user)
+
+
+@auth.route('/download/<upload_id>')
+def download(upload_id):
+    upload = Upload.query.filter_by(id=upload_id).first()
+    return send_file(BytesIO(upload.data), 
+                     download_name=upload.filename, as_attachment=True)

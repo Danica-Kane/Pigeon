@@ -2,7 +2,7 @@
 from.import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
-
+from flask_wtf.file import FileField, FileAllowed, FileRequired
 from flask_wtf import FlaskForm, CSRFProtect
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired, Length

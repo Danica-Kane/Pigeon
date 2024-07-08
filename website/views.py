@@ -18,6 +18,14 @@ from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired, Length
 import time
 
+#  Put essential values of keys [UrlEndpoint, PrivateKey, PublicKey]
+from imagekitio import ImageKit
+imagekit = ImageKit(
+    private_key='private_gpIu/xlYrm3Mgj6cdgVFUoNaCmQ=',
+    public_key='public_gJrHhsdUStY2LSXeDuOzfEIsHPw=',
+    url_endpoint = 'https://ik.imagekit.io/4fkqivcju'
+)
+
 import pusher
 
 # SET UP PUSHER

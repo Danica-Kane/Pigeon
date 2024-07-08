@@ -7,7 +7,8 @@
     <!-- DISPLAY USERNAME & PROFILE PIC -->
     <div class="row divider">
       <div class='col-md'>
-        <img src="{{ url_for('static', filename='images/' + user.profile_pic )}}" class="profile_pic">
+        {{user.data}}
+        <!--<img src="{{ url_for('static', filename='images/' + user.profile_pic )}}" class="profile_pic">-->
         <h3>{{user.first_name}}<h3>
       </div>
     </div>
