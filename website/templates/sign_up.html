@@ -77,11 +77,35 @@
   </div>
 
   <!-- upload profile picture -->
-  <!--
+  
   <div class="form-group">
     <label for="profile_pic" class="sign-label"
-      ><strong>upload profile pic (this cannot be changed later)</strong></label
+      ><strong>select a profile pic (this cannot be changed later)</strong></label
     >
+
+    <br>
+    <br>
+
+     
+    <select name="profile_pic" id="profile_pic" class="selector">
+      <option value="/User-Profiles/red.jpg">red</option>
+      <option value="/User-Profiles/green.jpg">green</option>
+      <option value="/User-Profiles/blue.jpg">blue</option>
+      <option value="/User-Profiles/yellow.jpg">yellow</option>
+    </select>
+
+    <br>
+    <br>
+    <img src="{{ url_for('static', filename="/User-Profiles/red.jpg" )}}" class="profile_select">
+    <img src="{{ url_for('static', filename="/User-Profiles/green.jpg" )}}" class="profile_select">
+    <img src="{{ url_for('static', filename="/User-Profiles/blue.jpg" )}}" class="profile_select">
+    <img src="{{ url_for('static', filename="/User-Profiles/yellow.jpg" )}}" class="profile_select">
+
+
+    <br>
+    <br>
+
+    <!--
     <input
       type="file"
       class="form-control file-upload"
@@ -94,5 +118,6 @@
   </div>-->
 
   <button type="submit" class="btn sign-btn">Submit</button>
+  <br><br><br>
 </form>
 {%endblock%}

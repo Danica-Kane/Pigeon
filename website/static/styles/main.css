@@ -85,6 +85,24 @@ body {
   background: var(--background);
 }
 
+.profile_select{
+  width: 20%;
+  border-radius: 100%;
+  margin-right: 15px;
+  margin-bottom: 5px;
+}
+
+.selector{
+  width: 80%;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+select {
+  font-size: 0.9rem;
+  padding: 2px 5px;
+}
+
 /* Checkbox */
 .theme-switch-wrapper {
   margin-top: 3rem;

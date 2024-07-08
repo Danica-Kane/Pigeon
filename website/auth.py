@@ -56,7 +56,7 @@ def sign_up():
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
         
-        #profile_pic = request.files["profile_pic"]
+        profile_pic = request.form.get('profile_pic')
         
         #picName = str(uuid.uuid1()) + os.path.splitext(profile_pic.filename)[1]
         #profile_pic.save(os.path.join("/Users/danicakane/Downloads/Pigeon/website/static/images", picName))
@@ -75,7 +75,7 @@ def sign_up():
         elif len(password1) < 7:
             flash('Password must be at least 7 characters', category='error')
         else:
-            new_user = User(email=email, first_name=first_name, password=generate_password_hash(password1, method='pbkdf2'))#profile_pic=picName
+            new_user = User(email=email, first_name=first_name, password=generate_password_hash(password1, method='pbkdf2'), profile_pic=profile_pic)
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
