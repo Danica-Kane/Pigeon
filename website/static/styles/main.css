@@ -515,11 +515,6 @@ h2{
   flex-direction: column-reverse;
 }
 
-.instant-msg-div{
-  position:sticky;
-  bottom: 10%;
-}
-
 .instant-msg-text{
   font-size: var( --font-size-instant-msg-text);
   color: var(--color-text);
